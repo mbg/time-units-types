@@ -34,16 +34,10 @@ library
       src
   default-extensions:
       DataKinds
-      FlexibleInstances
-      FunctionalDependencies
-      KindSignatures
-      MultiParamTypeClasses
       PolyKinds
       ScopedTypeVariables
-      StandaloneKindSignatures
       TypeApplications
       TypeFamilies
-      TypeOperators
   ghc-options: -Wall
   build-depends:
       base >=4.7 && <5

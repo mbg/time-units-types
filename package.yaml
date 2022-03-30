@@ -21,16 +21,10 @@ dependencies:
 
 default-extensions:
   - DataKinds
-  - FlexibleInstances
-  - FunctionalDependencies
-  - KindSignatures
-  - MultiParamTypeClasses
   - PolyKinds
   - ScopedTypeVariables
-  - StandaloneKindSignatures
   - TypeApplications
   - TypeFamilies
-  - TypeOperators
 
 ghc-options:
   - -Wall
