@@ -22,7 +22,7 @@ module Data.Time.TypeLevel (
 
 import GHC.TypeLits
 
-import Data.Time.Units qualified as Units
+import qualified Data.Time.Units as Units
 import Data.Proxy
 import Data.Kind
 

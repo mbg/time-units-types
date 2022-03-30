@@ -23,7 +23,6 @@ default-extensions:
   - DataKinds
   - FlexibleInstances
   - FunctionalDependencies
-  - ImportQualifiedPost
   - KindSignatures
   - MultiParamTypeClasses
   - PolyKinds

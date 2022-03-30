@@ -36,7 +36,6 @@ library
       DataKinds
       FlexibleInstances
       FunctionalDependencies
-      ImportQualifiedPost
       KindSignatures
       MultiParamTypeClasses
       PolyKinds
