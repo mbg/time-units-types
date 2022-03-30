@@ -7,7 +7,7 @@ This Haskell library exports types which can be used to describe simple type per
 
 import Data.Time.TypeLevel
 
-type TenSeconds = Second 10
+type TenSeconds = 'Second 10
 
 main :: IO ()
 main = do
