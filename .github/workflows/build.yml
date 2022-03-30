@@ -1,0 +1,53 @@
+name: build
+
+on:
+  push:
+    branches:
+      - main
+    tags:
+      - "time-units-types-*"
+    paths:
+      - ".github/workflows/**"
+      - "src/**"
+      - "package.yaml"
+      - "stack*.yaml"
+  pull_request:
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        resolver:
+          - "stack"
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: haskell/actions/setup@v1
+        id: install-haskell
+        with:
+          enable-stack: true
+          stack-version: "latest"
+          stack-no-global: true
+          stack-setup-ghc: true
+
+      - name: Cache .stack
+        id: cache-stack
+        uses: actions/cache@v2
+        with:
+          path: ${{ steps.install-haskell.outputs.stack-root }}
+          key: ${{ runner.os }}-${{ matrix.resolver }}-${{ hashFiles(format('{0}.yaml', matrix.resolver)) }}-${{ hashFiles('*.cabal') }}
+          restore-keys: |
+            ${{ runner.os }}-${{ matrix.resolver }}-${{ hashFiles(format('{0}.yaml', matrix.resolver)) }}-
+            ${{ runner.os }}-${{ matrix.resolver }}-
+            ${{ runner.os }}-
+
+      - name: Install dependencies
+        run: stack --stack-yaml=${{ matrix.resolver }}.yaml --no-terminal build --only-dependencies --test --haddock --fast
+
+      - name: Build
+        id: build
+        run: stack --stack-yaml=${{ matrix.resolver }}.yaml --no-terminal build --fast --test --no-run-tests
+
