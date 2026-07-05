@@ -22,6 +22,9 @@ jobs:
 
     runs-on: ubuntu-latest
 
+    permissions:
+      contents: read
+
     steps:
       - uses: actions/checkout@v7
 
@@ -49,4 +52,3 @@ jobs:
       - name: Build
         id: build
         run: stack --stack-yaml=${{ matrix.resolver }}.yaml --no-terminal build --fast --test --no-run-tests
-
